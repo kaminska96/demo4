@@ -1,0 +1,38 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!-- Display name of the application -->
+    <display-name>Library Management System</display-name>
+
+    <!-- Servlet configuration for Jersey REST framework -->
+    <servlet>
+        <!-- Name of the servlet -->
+        <servlet-name>jersey-servlet</servlet-name>
+        <!-- Fully qualified class name of the Jersey ServletContainer -->
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <!-- Initialization parameter to specify the main application class -->
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.group02.demo4.app.MyRESTwsApp</param-value>
+        </init-param>
+        <!-- Initialization parameter to specify the packages to scan for REST resources and security filters -->
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>com.group02.demo4.resources, com.group02.demo4.security</param-value>
+        </init-param>
+        <!-- Load the servlet on application startup (1 means priority) -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- Mapping the servlet to a specific URL pattern -->
+    <servlet-mapping>
+        <!-- Name of the servlet to be mapped -->
+        <servlet-name>jersey-servlet</servlet-name>
+        <!-- URL pattern to which the servlet will respond -->
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>
